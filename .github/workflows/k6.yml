@@ -1,4 +1,4 @@
-name: Build and Deploy to GKE
+name: Loadtest with Grafana/k6
 
 on: release
 
