@@ -53,5 +53,6 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        kubectl set image deployment/hello-server hello-app=$IMAGE:$GITHUB_SHA
+        echo using gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA && 
+        kubectl set image deployment/hello-server hello-app=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
 
