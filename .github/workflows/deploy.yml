@@ -55,5 +55,3 @@ jobs:
       run: |-
         kubectl create deployment $DEPLOYMENT_NAME-$GITHUB_RUN_NUMBER \
          --image=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
-        kubectl get services -o wide
