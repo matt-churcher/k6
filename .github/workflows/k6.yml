@@ -15,5 +15,5 @@ jobs:
         uses: k6io/action@v0.1
         with:
           filename: test.js
-          flags: --out influx=http://influx:${{secrets.influx}}@influx.churcher.me:8086/
+          flags: --out influxdb=http://influx:${{secrets.influx}}@influx.churcher.me:8086/
           
