@@ -54,6 +54,6 @@ jobs:
     - name: Deploy
       run: |-
         kubectl create deployment $DEPLOYMENT_NAME \
-         --image=gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+         --image=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
