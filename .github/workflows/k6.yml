@@ -15,13 +15,13 @@ jobs:
         uses: k6io/action@v0.1
         with:
           filename: test.js
-          flags: --out influxdb=http://influx:${{secrets.influx}}@influx.churcher.me:8086/ --out json=/github/workspace/results.json
+          flags: --out influxdb=http://influx:${{secrets.influx}}@influx.churcher.me:8086/ --out json=/tmp/results.json
           
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
           name: k6-results
-          path: /github/workspace/results.json
+          path: /tmp/results.json
           retention-days: 7
           
           
