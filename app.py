@@ -1,5 +1,5 @@
 from flask import Flask
-from sleep import time
+from time import sleep
 app = Flask(__name__)
 
 @app.route('/')
