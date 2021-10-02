@@ -22,7 +22,7 @@ jobs:
           npm install
       - name: Start server and run tests
         run: |
-          ./k6 run test.js --out json=results.json
+          ./k6 run test.js --out json=results.json --no-thresholds
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
