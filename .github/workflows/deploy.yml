@@ -6,7 +6,7 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: autopilot-cluster-1    # Add your cluster name here.
   GKE_ZONE: europe-west2-a   # Add your cluster zone here.
-  DEPLOYMENT_NAME: gke-deploy # Add your deployment name here.
+  DEPLOYMENT_NAME: hello-app # Add your deployment name here.
   IMAGE: hello-world
 
 jobs:
