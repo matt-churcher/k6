@@ -14,11 +14,12 @@ jobs:
 
       - name: download and extract k6 release binaries
         run: |
-          curl https://github.com/grafana/k6/releases/download/v0.34.1/k6-v0.34.1-linux-amd64.tar.gz -L | tar xvz --strip-components 1
+           wget https://github.com/grafana/k6/releases/download/v0.34.1/k6-v0.34.1-linux-amd64.tar.gz
+           tar xvf k6-v0.34.1-linux-amd64.tar.gz  --strip-components 1
       - name: Install packages
         run: |
           npm install
-      - name: Start server and run tests
+      - name: run tests
         run: |
           ./k6 run test.js --out json=results.json --no-thresholds
       - name: 'Upload Artifact'
