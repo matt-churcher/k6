@@ -57,5 +57,8 @@ jobs:
         kubectl set image deployment/${{env.DEPLOYMENT_NAME}} hello-app=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
         kubectl rollout status deployment/$DEPLOYMENT_NAME
 
-        
-
+    - name: Run local k6 test
+      uses: k6io/action@v0.1
+      with:
+        filename: test.js
+        flags: --out influxdb=http://influx:${{secrets.influx}}@influx.churcher.me:8086/ --out json=/tmp/results.json
