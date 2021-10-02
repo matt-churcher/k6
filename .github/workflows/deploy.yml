@@ -55,4 +55,8 @@ jobs:
       run: |-
         echo using gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA && 
         kubectl set image deployment/${{env.DEPLOYMENT_NAME}} hello-app=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        
+        
+        
 
