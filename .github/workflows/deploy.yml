@@ -56,7 +56,12 @@ jobs:
         echo using gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA && 
         kubectl set image deployment/${{env.DEPLOYMENT_NAME}} hello-app=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
         kubectl rollout status deployment/$DEPLOYMENT_NAME
-
+  k6:
+    needs: setup-build-publish-deploy
+    name: Grafana/K6
+    runs-on: ubuntu-latest
+    steps:
+    
     - name: Run local k6 test
       uses: k6io/action@v0.1
       with:
