@@ -1,5 +1,9 @@
 name: Loadtest with Grafana/k6
 
+on:
+  workflow_run:
+    workflows: ["Build and Deploy to GKE"]
+    types: [completed]
 
 jobs:
   k6_load_test:
