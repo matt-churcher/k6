@@ -1,6 +1,5 @@
 name: Loadtest with Grafana/k6
 
-on: push
 
 jobs:
   k6_load_test:
