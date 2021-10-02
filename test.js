@@ -7,7 +7,7 @@ export let options = {
     http_req_duration: ['p(95)<200'], // 95% of requests should be below 200ms
   },
   stages: [
-    { duration: '2m', target: 500 },
+    { duration: '1m', target: 100 },
   ],
 };
 
