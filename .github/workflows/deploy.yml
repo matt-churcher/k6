@@ -1,10 +1,10 @@
 name: Build and Deploy to GKE
 
-on: release
+on: commit
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: hello-cluster    # Add your cluster name here.
+  GKE_CLUSTER: autopilot-cluster-1    # Add your cluster name here.
   GKE_ZONE: europe-west2-a   # Add your cluster zone here.
   DEPLOYMENT_NAME: gke-deploy # Add your deployment name here.
   IMAGE: hello-world
