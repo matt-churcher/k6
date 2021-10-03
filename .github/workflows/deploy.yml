@@ -1,4 +1,4 @@
-name: Build and Deploy to GKE
+name: Build, Deploy, Test
 
 on:
   workflow_dispatch
