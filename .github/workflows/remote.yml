@@ -47,5 +47,5 @@ jobs:
       run: |-
         kubectl create configmap test --from-file=remote.js
         kubectl apply -f k6job.yml 
-        kubectl wait --for=condition=complete job/myjob
+        kubectl wait --for=condition=complete job/k6job --timeout=20m
         
