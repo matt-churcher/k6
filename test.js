@@ -13,7 +13,7 @@ export let options = {
 
 export default function () {
 
-  const res = http.get('http://hello.churcher.me');
+  const res = http.get('https://d379cu3ba5n3dc.cloudfront.net');
 
   check(res, {
     'is status 200': (r) => r.status === 200,
