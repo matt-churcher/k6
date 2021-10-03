@@ -7,13 +7,13 @@ export let options = {
     http_req_duration: ['p(95)<1000'], // 95% of requests should be below 200ms
   },
   stages: [
-    { duration: '1m', target: 1000 },
+    { duration: '5m', target: 500 },
   ],
 };
 
 export default function () {
 
-  const res = http.get('https://d379cu3ba5n3dc.cloudfront.net');
+  const res = http.get('https://hello.churcher.me');
 
   check(res, {
     'is status 200': (r) => r.status === 200,
