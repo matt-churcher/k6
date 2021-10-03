@@ -17,7 +17,7 @@ spec:
           args:
             [
               "run",
-              "/etc/config/script.js",
+              "/etc/config/remote.js",
               "--out",
               "influxdb=http://$(INFLUX_USERNAME):$(INFLUX_PASSWORD)@influx.churcher.me:8086/"
             ]
