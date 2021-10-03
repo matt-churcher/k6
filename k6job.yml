@@ -1,35 +1,45 @@
-apiVersion: v1
-kind: Pod
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: k6job
 spec:
-  containers:
-    - name: k6
-      image: loadimpact/k6
-      command: ["k6"]
-      args: ["run", "/etc/config/remote.js", "--out", "influxdb=http://$(INFLUX_USERNAME):$(INFLUX_PASSWORD)@influx.churcher.me:8086/", "--no-thresholds"]
-      env:
-        - name: INFLUX_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: influx-auth
-              key: username
-        - name: INFLUX_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: influx-auth
-              key: password
-      volumeMounts:
+  activeDeadlineSeconds: 1800
+  ttlSecondsAfterFinished: 300
+  backoffLimit: 0
+  template:
+    spec:
+
+      restartPolicy: Never
+      containers:
+        - name: k6
+          image: loadimpact/k6
+          command: ["k6"]
+          args:
+            [
+              "run",
+              "/etc/config/script.js",
+              "--out",
+              "influxdb=http://$(INFLUX_USERNAME):$(INFLUX_PASSWORD)@influx.churcher.me:8086/"
+            ]
+          env:
+            - name: INFLUX_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: influx-auth
+                  key: username
+            - name: INFLUX_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: influx-auth
+                  key: password
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+      volumes:
       - name: config-volume
-        mountPath: /etc/config
-      resources:
-        requests:
-          memory: "2Gi"
-          cpu: "1"
-  volumes:
-    - name: config-volume
-      configMap:
-        # Provide the name of the ConfigMap containing the files you want
-        # to add to the container
-        name: test
-  restartPolicy: Never
+        configMap:
+          name: test
