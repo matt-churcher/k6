@@ -34,12 +34,18 @@ jobs:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
         credentials: ${{ secrets.GKE_SA_KEY }}
-
-    # Deploy the Docker image to the GKE cluster
-    - name: Deploy
+        
+  
+    # remove stale resources
+    - name: Clean UP 
       run: |-
+        kubectl delete -f k6job.yml || true
         kubectl delete configmap test || true
+        
+    # Deploy the Docker image to the GKE cluster
+    - name: Deploy and Wait
+      run: |-
         kubectl create configmap test --from-file=remote.js
         kubectl apply -f k6job.yml 
         kubectl wait --for=condition=complete job/myjob
-        kubectl delete -f k6job.yml
+        
