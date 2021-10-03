@@ -1,4 +1,4 @@
-name: Nightly Load Test
+name: Build, Start Docker, Test Local
 
 on:
   workflow_dispatch
