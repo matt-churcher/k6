@@ -38,6 +38,7 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
+        kubectl delete configmap test || true
         kubectl create configmap test --from-file=remote.js
         kubectl apply -f k6job.yml 
         kubectl wait --for=condition=complete job/myjob
